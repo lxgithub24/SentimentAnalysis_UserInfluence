@@ -1,7 +1,0 @@
-#!/bin/sh
-date
-python weibo_spider.py
-sleep 10
-python pymysql.py
-sleep 10
-date
