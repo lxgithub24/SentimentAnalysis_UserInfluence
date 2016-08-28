@@ -1,0 +1,94 @@
+#Header1_HeaderTitle{
+    font-size:18pt;
+    font-family: "Microsoft Yahei", Tahoma, Arial, Helvetica, STHeiti;
+}
+#tagline{
+    margin-left:65px;
+}
+.post{
+    font-family: "Microsoft Yahei", Tahoma, Arial, Helvetica, STHeiti;
+    font-size:17px;
+    color: #333;
+}
+.posttext p{
+　　font-family: "Microsoft Yahei", Tahoma, Arial, Helvetica, STHeiti;
+　　font-size: 15px;
+　　color: #333;
+}
+.post h1 {
+    margin: 15px 0;
+    padding: 0px;
+	background: none repeat scroll 0 0 darkSlateBlue;
+	border-radius: 3px 3px 3px 3px;
+	color: white;
+	font-size: 16pt;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	padding-left: 20px;
+}
+.post h2
+{
+    margin: 15px 0;
+    padding: 0;
+ 
+    color: #1977B0;
+   font-size: 14pt;
+    padding-left: 20px;
+}
+.post h3
+{
+    margin: 15px 0;
+    padding: 0;
+    font-size: 110%;
+    color: #1977B0;
+    font-size: 12pt;
+    padding-left: 20px;
+}
+
+.code
+{
+    background: #fbedbb;
+    border: #c0c0c0 1px solid;
+    padding: 5px;
+    margin: 0 40px 0 20px;
+    font-family: Verdana,Helvetica, "微软雅黑" , Arial, "宋体" , sans-blockquote:after {
+    bottom: -0.15em;
+    content: url("http://images.cnblogs.com/cnblogs_com/rush/268781/o_quote_right.png");
+    float: right;
+    font-size: 6em;
+    line-height: 0.1em;
+    position: relative;
+    right: -0.15em;
+}
+
+
+
+blockquote {
+    background-color: #EFF4E1;
+    border: 1px solid #CDDD9E;
+    border-radius: 15px 15px 15px 15px;
+    margin: 2em 16px;
+    color: #333333;
+    font-size: 14pt;
+	font-weight: bold;
+}
+blockquote:after {
+    bottom: -0.15em;
+    content: url("http://images.cnblogs.com/cnblogs_com/rush/268781/o_quote_right.png");
+    float: right;
+    font-size: 6em;
+    line-height: 0.1em;
+    position: relative;
+    right: -0.15em;
+}
+
+blockquote:before {
+    content: url("http://images.cnblogs.com/cnblogs_com/rush/268781/o_quote_left.png");
+    font-size: 6em;
+    left: -0.15em;
+    line-height: 0.1em;
+    position: relative;
+    top: -0.15em;
+}

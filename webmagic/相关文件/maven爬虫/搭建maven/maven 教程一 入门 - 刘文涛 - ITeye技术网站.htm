@@ -1,0 +1,863 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)http://wentao365.iteye.com/blog/903396 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><style type="text/css" id="954254000"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>maven 教程一 入门 - 刘文涛 - ITeye技术网站</title>
+    <meta name="description" content="Maven是一个采用纯Java编写的开 源项目管理工具。Maven采用了一种被称之为project object model (POM)概念来管理项目，所有的项目配置信息都被定义在一个叫做P ...">
+    <meta name="keywords" content="maven, 项目管理, 配置管理, JBoss, Apache maven 教程一 入门">
+    <link rel="shortcut icon" href="http://wentao365.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://wentao365.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://wentao365.iteye.com/rss" rel="alternate" title="刘文涛" type="application/rss+xml">
+    <link href="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/ga.js"></script><script src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/application.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/hotkey.js" type="text/javascript"></script>
+  <script src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/code_favorites.js" type="text/javascript"></script>
+<script src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/weiboshare.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://wentao365.iteye.com/blog/903396#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">招聘</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="http://wentao365.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://wentao365.iteye.com/login">登录</a>
+    <a href="http://wentao365.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://wentao365.iteye.com/">刘文涛</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://wentao365.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://wentao365.iteye.com/weibo">微博</a></li>
+            <li><a href="http://wentao365.iteye.com/album">相册</a></li>
+            <li><a href="http://wentao365.iteye.com/link">收藏</a></li>
+            <li><a href="http://wentao365.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://wentao365.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://wentao365.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://wentao365.iteye.com/" class="p-author" target="_blank">wentao365</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/maven 教程一 入门 - 刘文涛 - ITeye技术网站.htm">maven 教程一 入门</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://wentao365.iteye.com/category/126032">maven</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/maven">maven</a><a href="http://www.iteye.com/blogs/tag/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86">项目管理</a><a href="http://www.iteye.com/blogs/tag/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86">配置管理</a><a href="http://www.iteye.com/blogs/tag/JBoss">JBoss</a><a href="http://www.iteye.com/blogs/tag/Apache">Apache</a>&nbsp;</div>
+  </div>
+
+  <div id="blog_content" class="blog_content">
+    Maven是一个采用纯Java编写的开 源项目管理工具。Maven采用了一种被称之为project object model (POM)概念来管理项目，所有的项目配置信息都被定义在一个叫做POM.xml的文件中，通过该文件，Maven可以管理项目的整个声明周期，包括编 译，构建，测试，发布，报告等等。目前Apache下绝大多数项目都已经采用Maven进行管理。而Maven本身还支持多种插件，可以方便更灵活的控制 项目。
+<br>
+<br>1：http://maven.apache.org/download.html 下载最新版本 Maven 3.0.2 (Binary zip)
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/903c257f-ffe2-3224-83d4-8315c3ec4400.png">
+<br>
+<br>2：解压到 D:
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/18aae6df-604f-3fce-9f9d-b868149df29b.png">
+<br>
+<br>3：配置环境变量
+<br>&nbsp;&nbsp; MAVEN_HOME : D:\apache-maven-3.0.2
+<br>&nbsp;&nbsp; MAVEN : %MAVEN_HOME%\bin
+<br>&nbsp; (可选） MAVEN_OPTS : -Xms256m -Xmx512m
+<br>
+<br>&nbsp;&nbsp; 在path 前面 加上 %MAVEN%;
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/4906b95c-721d-3f84-a002-54c9fba75f04.png">
+<br>
+<br>4：验证安装是否成功
+<br>在命令行上输入 ： mvn -version; 回车，如看到下面信息表示安装成功：
+<br>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/fa9ab213-7cba-3960-83e9-c00eb125f835.png">
+<br>
+<br>5：创建项目 
+<br>在命令行上输入 ：mvn archetype:create -DgroupId=com.mycompany.app -DartifactId=my-app 回车，
+<br>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/63c26a8f-7fe0-3b43-bc66-7047af1b6834.png">
+<br>
+<br>如果你是首次运行该命令(goal)，maven将要花一些时间去把最新的工具包(Maven 把它叫作artifacts)下载到你的本地仓库。 
+<br>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/ea8622c7-914c-3530-a564-2d6bdb3637b2.png">
+<br>
+<br>命令执行完后你将看到maven生成了一个名为my-app的目录，这个名字就是你在命令中指定的artifactId,进入该目录，你将发现以下标准的项目结构： 
+<br>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/0f6d36f2-b7b9-360c-82d2-ff6f63924eb4.png">
+<br>
+<br>其中:src/main/java 目录包含了项目的源代码，src/test/java 目录包含了项目的测试代码，pom.xml是项目的项目对象模型（Project Object Model or POM）。 
+<br>
+<br>6：POM 
+<br>pom.xml 文件是maven对一个项目的核心配置，这个文件将包含你希望如何构建项目的大多数配置信息。POM大而复杂，但你不用全部去了解，只要使用一些常用的配置就可以了。下面列出这个POM的内容： 
+<br><div class="quote_title">引用</div><div class="quote_div">
+<br>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<br>&nbsp; xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+<br>&nbsp; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+<br>
+<br>&nbsp; &lt;groupId&gt;com.mycompany.app&lt;/groupId&gt;
+<br>&nbsp; &lt;artifactId&gt;my-app&lt;/artifactId&gt;
+<br>&nbsp; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+<br>&nbsp; &lt;packaging&gt;jar&lt;/packaging&gt;
+<br>
+<br>&nbsp; &lt;name&gt;my-app&lt;/name&gt;
+<br>&nbsp; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+<br>
+<br>&nbsp; &lt;properties&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+<br>&nbsp; &lt;/properties&gt;
+<br>
+<br>&nbsp; &lt;dependencies&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;dependency&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;groupId&gt;junit&lt;/groupId&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;artifactId&gt;junit&lt;/artifactId&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;version&gt;3.8.1&lt;/version&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;scope&gt;test&lt;/scope&gt;
+<br>&nbsp;&nbsp;&nbsp; &lt;/dependency&gt;
+<br>&nbsp; &lt;/dependencies&gt;
+<br>&lt;/project&gt;
+<br></div>
+<br>7：第5步我们做了什么
+<br><div class="quote_title">引用</div><div class="quote_div">mvn archetype:create -DgroupId=com.mycompany.app -DartifactId=my-app</div>
+<br>执行Maven 命令（goal）archetype:create，并且设置了一些参数( -DgroupId=com.mycompany.app -DartifactId=my-app)
+<br>
+<br>在这个命令中，前缀 archetype 是包含create命令的一个maven的plugin。这个goal命令根据项目原型（符合maven标准的项目模板）建立了一个简单的项目。
+<br>
+<br>现在可以确定地说，一个maven plugin 就是一些有着相同目的的goals命令的集合，例如 jboss-maven-plugin 这个插件，就是为了处理各种和jboss相关的任务。
+<br>
+<br>8：Build 项目
+<br>在命令行上 输入 ： cd my-app 回车，进入到 项目路径下
+<br>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/0b4337f1-8cc0-380a-9fa5-1fbef0c13c74.png">
+<br>
+<br>再输入 mvn package 回车这时命令行将会打印出各种动作，并且以下面一段信息结束：
+<br>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/aa8e4058-5c8d-3f76-8e4f-40af10b4989f.png">
+<br>
+<br>与首次执行的命令(<strong>那是一个goal</strong>)
+<br><div class="quote_title">引用</div><div class="quote_div">archetype:create</div>
+<br>不同,这次执行的只是一个简单的命令---package。不同于goal,<strong>这是一个phase(阶段)</strong>，一个phase是指构建生命周期的一个阶段，构建生命周期是指有序的一系列phase。当给出一个phase，Maven将执行所有的在此阶段前的phase及其自身，例如，如果我们执行compile阶段，实际上执行的阶段有： 
+<br><div class="quote_title">引用</div><div class="quote_div">validate 
+<br>generate-sources 
+<br>process-sources 
+<br>generate-resources 
+<br>process-resources 
+<br>compile </div>
+<br>你可以使用以下的命令来测试新编译和打包出来的jar包， 
+<br><div class="quote_title">引用</div><div class="quote_div">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App</div> 
+<br>这时将打印出最经典的： 
+<br><div class="quote_title">引用</div><div class="quote_div">Hello World! </div>
+<br><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/d16ef3c3-dd82-3e9c-b70e-0746bd906f26.png">
+<br>
+<br>9：运行Maven工具 
+<br>
+<br>虽然很难列出一张非常全面的表，但在此可先列出最普通的默认的生命周期阶段: 
+<br><div class="quote_title">引用</div><div class="quote_div"><strong>validate：</strong>验证工程是否正确，所有需要的资源是否可用。 
+<br><strong>compile：</strong>编译项目的源代码。&nbsp;&nbsp; 
+<br><strong>test：</strong>使用合适的单元测试框架来测试已编译的源代码。这些测试不需要已打包和布署。 
+<br><strong>Package：</strong>把已编译的代码打包成可发布的格式，比如jar。 
+<br><strong>integration-test：</strong>如有需要，将包处理和发布到一个能够进行集成测试的环境。 
+<br><strong>verify：</strong>运行所有检查，验证包是否有效且达到质量标准。 
+<br><strong>install：</strong>把包安装在本地的repository中，可以被其他工程作为依赖来使用。 
+<br><strong>Deploy：</strong>在集成或者发布环境下执行，将最终版本的包拷贝到远程的repository，使得其他的开发者或者工程可以共享。 
+<br><strong>clean：</strong>清除先前构建的artifacts（在maven中，把由项目生成的包都叫作artifact）。 
+<br><strong>site：</strong>为项目生成文档站点。
+<br></div>&nbsp; 
+<br>上面列出的各个Phases（阶段）实际上对应着潜在的goals，特殊的每个阶段执行的特殊的goals由项目的类型所决定，例如：如果项目的类型是jar,package阶段将默认执行jar:jar的goals,如果项目类型是war,那么package阶段执行的goals将是war:war。 
+<br>有件有趣的事情需要注意，那就是phases和goals需要按一定的顺序来执行。 
+<br>mvn clean dependency:copy-dependencies package 
+<br>这个命令将先清除项目，然后拷贝依赖，最后把项目打包，当然，在打包之前，会先执行此阶段之前的阶段.如compile,test等. 
+<br>生成站点 
+<br>mvn site 
+<br>这个阶段生成基于pom.xml配置的项目信息。你可以在target/site目录下看到生成的文档。
+  </div>
+
+  
+  <div class="attachments">
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0248/903c257f-ffe2-3224-83d4-8315c3ec4400.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/903c257f-ffe2-3224-83d4-8315c3ec4400-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 14.1 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0252/18aae6df-604f-3fce-9f9d-b868149df29b.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/18aae6df-604f-3fce-9f9d-b868149df29b-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 6 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0260/4906b95c-721d-3f84-a002-54c9fba75f04.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/4906b95c-721d-3f84-a002-54c9fba75f04-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 19.8 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0262/fa9ab213-7cba-3960-83e9-c00eb125f835.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/fa9ab213-7cba-3960-83e9-c00eb125f835-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 6.2 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0281/63c26a8f-7fe0-3b43-bc66-7047af1b6834.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/63c26a8f-7fe0-3b43-bc66-7047af1b6834-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 1.9 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0285/ea8622c7-914c-3530-a564-2d6bdb3637b2.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/ea8622c7-914c-3530-a564-2d6bdb3637b2-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 9.3 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0288/0f6d36f2-b7b9-360c-82d2-ff6f63924eb4.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/0f6d36f2-b7b9-360c-82d2-ff6f63924eb4-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 16.5 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0299/0b4337f1-8cc0-380a-9fa5-1fbef0c13c74.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/0b4337f1-8cc0-380a-9fa5-1fbef0c13c74-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 1.8 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0304/aa8e4058-5c8d-3f76-8e4f-40af10b4989f.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/aa8e4058-5c8d-3f76-8e4f-40af10b4989f-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 8.5 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0041/0313/d16ef3c3-dd82-3e9c-b70e-0746bd906f26.png" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/d16ef3c3-dd82-3e9c-b70e-0746bd906f26-thumb.png" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 3 KB</li>
+        </ul>
+      
+    
+    
+      <ul>
+        <li><a href="http://wentao365.iteye.com/blog/903396#" onclick="$$(&#39;div.attachments ul&#39;).invoke(&#39;show&#39;);$(this).up(1).hide();return false;">查看图片附件</a></li>
+      </ul>
+    
+  </div>
+
+
+  
+  
+  <iframe src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/187.htm" scrolling="no" width="468" height="60" frameborder="0"></iframe>
+  
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://wentao365.iteye.com/blog/903513" class="next" title="maven 教程二 深入">maven 教程二 深入</a>
+      |
+      <a href="http://wentao365.iteye.com/blog/899173" class="pre" title="jquery常用地址">jquery常用地址</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2011-02-11 10:34</li>
+      <li>浏览 220980</li>
+      <li><a href="http://wentao365.iteye.com/blog/903396#comments">评论(34)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/other">非技术</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/903396" target="_blank" class="more">相关推荐</a></li>
+    </ul>
+  </div>
+
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2368313">
+  <div class="comment_title">
+    34 楼
+    <a href="http://cashflow1985.iteye.com/" target="_blank" title="cashflow1985">cashflow1985</a>
+    2015-03-04&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">谢谢分享~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div>
+</div>
+
+<div id="bc2368115">
+  <div class="comment_title">
+    33 楼
+    <a href="http://ripin-yan.iteye.com/" target="_blank" title="Ripin_Yan">Ripin_Yan</a>
+    2015-02-27&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">xinnianjava 写道</div><div class="quote_div">你好！我配置好maven的环境变量后，可以看到版本为3.0.5但是执行下一步就报错<br></div><br>你这一般是网络问题吧，下载插件没成功</div>
+</div>
+
+<div id="bc2368111">
+  <div class="comment_title">
+    32 楼
+    <a href="http://xinnianjava.iteye.com/" target="_blank" title="xinnianjava">xinnianjava</a>
+    2015-02-27&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">你好！我配置好maven的环境变量后，可以看到版本为3.0.5但是执行下一步就报错<br>mvn archetype:create -DgroupId=com.mycompany.app -DartifactId=my-app<br><br>[ERROR] No plugin found for prefix 'archetype' in the current project and in the<br> plugin groups [org.apache.maven.plugins, org.codehaus.mojo] available from the<br>repositories [local (C:\Users\Administrator\.m2\repository), central (http://rep<br>o.maven.apache.org/maven2)] -&gt; [Help 1]<br>[ERROR]<br>[ERROR] To see the full stack trace of the errors, re-run Maven with the -e swit<br>ch.<br>[ERROR] Re-run Maven using the -X switch to enable full debug logging.<br>[ERROR]<br>[ERROR] For more information about the errors and possible solutions, please rea<br>d the following articles:<br>[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/NoPluginFoundF<br>orPrefixException<br><br>有空麻烦指点下，谢谢！</div>
+</div>
+
+<div id="bc2366452">
+  <div class="comment_title">
+    31 楼
+    <a href="http://ripin-yan.iteye.com/" target="_blank" title="Ripin_Yan">Ripin_Yan</a>
+    2015-01-15&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">hongweibing1 写道</div><div class="quote_div">path怎么不直接写成D:\apache-maven-3.0.2\bin呢？ 这样的区别是什么</div><br>可以直接写，那就不用MAVEN_HOME了，之所以用MAVEN_HOME是因为，当你maven安装位置换了以后，直接更改MAVEN_HOME的值就可以了，不用改path，而且path里面的内容你一不小心改错把一些属于系统的删掉了，是无法恢复的</div>
+</div>
+
+<div id="bc2365397">
+  <div class="comment_title">
+    30 楼
+    <a href="http://hongweibing1.iteye.com/" target="_blank" title="hongweibing1">hongweibing1</a>
+    2014-12-29&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">path怎么不直接写成D:\apache-maven-3.0.2\bin呢？ 这样的区别是什么</div>
+</div>
+
+<div id="bc2365394">
+  <div class="comment_title">
+    29 楼
+    <a href="http://dada1990s.iteye.com/" target="_blank" title="dada1990s">dada1990s</a>
+    2014-12-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">很好，谢谢前辈了！</div>
+</div>
+
+<div id="bc2364714">
+  <div class="comment_title">
+    28 楼
+    <a href="http://kakarottoz.iteye.com/" target="_blank" title="kakarottoz">kakarottoz</a>
+    2014-12-14&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">博主讲的太好了 支持</div>
+</div>
+
+<div id="bc2363693">
+  <div class="comment_title">
+    27 楼
+    <a href="http://jayyunfei.iteye.com/" target="_blank" title="jayyunfei">jayyunfei</a>
+    2014-11-25&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">tpei520 写道</div><div class="quote_div">你好，感谢你分享maven环境搭建，我遇到一个问题，在根据你的指导在走到创建工的时候，创建失败了。<br>首先给我本地环境：<br><img><br>错误信息：<br><img><br>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:2<br>.2:create (default-cli) on project standalone-pom: Execution default-cli of goal<br> org.apache.maven.plugins:maven-archetype-plugin:2.2:create failed: Plugin org.a<br>pache.maven.plugins:maven-archetype-plugin:2.2 or one of its dependencies could<br>not be resolved: The following artifacts could not be resolved: org.apache.maven<br>.reporting:maven-reporting-api:jar:2.0.8, org.apache.maven.doxia:doxia-sink-api:<br>jar:1.0-alpha-9, org.codehaus.plexus:plexus-interactivity-api:jar:1.0-alpha-5: C<br>ould not transfer artifact org.apache.maven.reporting:maven-reporting-api:jar:2.<br>0.8 from/to central (http://repo.maven.apache.org/maven2): Connect to repo.maven<br>.apache.org:80 [repo.maven.apache.org/199.27.77.129, repo.maven.apache.org/199.2<br>7.77.192] failed: Connection refused: connect -&gt; [Help 1]<br><br> 请指教，谢谢！</div><br>你这里是因为没有找到maven模板插件。</div>
+</div>
+
+<div id="bc2362981">
+  <div class="comment_title">
+    26 楼
+    <a href="http://kite001.iteye.com/" target="_blank" title="kite001">kite001</a>
+    2014-11-17&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">刚开始接触，好资料！</div>
+</div>
+
+<div id="bc2362600">
+  <div class="comment_title">
+    25 楼
+    <a href="http://liujian71.iteye.com/" target="_blank" title="liujian71">liujian71</a>
+    2014-11-11&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼上一群饭桶</div>
+</div>
+
+<div id="bc2361166">
+  <div class="comment_title">
+    24 楼
+    <a href="http://jinlizy117.iteye.com/" target="_blank" title="jinlizy117">jinlizy117</a>
+    2014-10-22&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">顶！！！！！太JJ有用了，留个印</div>
+</div>
+
+<div id="bc2360740">
+  <div class="comment_title">
+    23 楼
+    <a href="http://yale268sh.iteye.com/" target="_blank" title="求求你帮帮我">求求你帮帮我</a>
+    2014-10-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主是世界上最心灵手巧的人</div>
+</div>
+
+<div id="bc2360536">
+  <div class="comment_title">
+    22 楼
+    <a href="http://694120953.iteye.com/" target="_blank" title="汤巧丽782">汤巧丽782</a>
+    2014-10-14&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_idea.gif"> </div>
+</div>
+
+<div id="bc2357778">
+  <div class="comment_title">
+    21 楼
+    <a href="http://254949825.iteye.com/" target="_blank" title="王明森">王明森</a>
+    2014-09-04&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">学习了<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_biggrin.gif"> </div>
+</div>
+
+<div id="bc2357467">
+  <div class="comment_title">
+    20 楼
+    <a href="http://cwzhang1989.iteye.com/" target="_blank" title="cwzhang1989">cwzhang1989</a>
+    2014-08-31&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">你好，不知道您的maven环境变量是否正确，我测试后不能找到，把bin目录路径放到path环境变量正常。</div>
+</div>
+
+<div id="bc2349615">
+  <div class="comment_title">
+    19 楼
+    <a href="http://927305828.iteye.com/" target="_blank" title="在路上123">在路上123</a>
+    2014-06-01&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><u>[u][u]<em>[i][i][i][i][i][i][i][i][i][i]<strong>[b][b][b][b][b][b][b][b][b][b][b][b][b][b]<div class="quote_title">引用</div><div class="quote_div"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_evil.gif">&nbsp;<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_exclaim.gif">&nbsp;<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_twisted.gif">&nbsp;<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_question.gif">&nbsp;<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_twisted.gif">&nbsp;<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_mad.gif">&nbsp;<img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_mad.gif"> </div></strong>[/b][/b][/b][/b][/b][/b][/b][/b][/b][/b][/b][/b][/b][/b]</em>[/i][/i][/i][/i][/i][/i][/i][/i][/i][/i]</u>[/u][/u]</div>
+</div>
+
+<div id="bc2349473">
+  <div class="comment_title">
+    18 楼
+    <a href="http://jiashenghan.iteye.com/" target="_blank" title="jiashenghan">jiashenghan</a>
+    2014-05-29&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">写的真不错</div>
+</div>
+
+<div id="bc2349013">
+  <div class="comment_title">
+    17 楼
+    <a href="http://shuaianwen.iteye.com/" target="_blank" title="shuaianwen">shuaianwen</a>
+    2014-05-25&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">为什么win7系统照你说的这样运行，找不到那个那个文件夹？</div>
+</div>
+
+<div id="bc2344289">
+  <div class="comment_title">
+    16 楼
+    <a href="http://tpei520.iteye.com/" target="_blank" title="tpei520">tpei520</a>
+    2014-04-03&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">你好，感谢你分享maven环境搭建，我遇到一个问题，在根据你的指导在走到创建工的时候，创建失败了。<br>首先给我本地环境：<br><img><br>错误信息：<br><img><br>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:2<br>.2:create (default-cli) on project standalone-pom: Execution default-cli of goal<br> org.apache.maven.plugins:maven-archetype-plugin:2.2:create failed: Plugin org.a<br>pache.maven.plugins:maven-archetype-plugin:2.2 or one of its dependencies could<br>not be resolved: The following artifacts could not be resolved: org.apache.maven<br>.reporting:maven-reporting-api:jar:2.0.8, org.apache.maven.doxia:doxia-sink-api:<br>jar:1.0-alpha-9, org.codehaus.plexus:plexus-interactivity-api:jar:1.0-alpha-5: C<br>ould not transfer artifact org.apache.maven.reporting:maven-reporting-api:jar:2.<br>0.8 from/to central (http://repo.maven.apache.org/maven2): Connect to repo.maven<br>.apache.org:80 [repo.maven.apache.org/199.27.77.129, repo.maven.apache.org/199.2<br>7.77.192] failed: Connection refused: connect -&gt; [Help 1]<br><br> 请指教，谢谢！</div>
+</div>
+
+<div id="bc2341383">
+  <div class="comment_title">
+    15 楼
+    <a href="http://a-jie1981.iteye.com/" target="_blank" title="a_jie1981">a_jie1981</a>
+    2014-03-05&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">介绍几个查找maven,jar,javadoc的网站<br><a rel="nofollow" href="http://wentao365.iteye.com/blog/www.findmaven.net" target="_blank">www.findmaven.net</a><br><a rel="nofollow" href="http://wentao365.iteye.com/blog/www.findjar.com" target="_blank">www.findjar.com</a><br><a rel="nofollow" href="http://wentao365.iteye.com/blog/www.docjar.com" target="_blank">www.docjar.com</a><br><a rel="nofollow" href="http://wentao365.iteye.com/blog/www.jarfinder.com" target="_blank">www.jarfinder.com</a></div>
+</div>
+
+
+    
+    <div class="pagination"><span class="disabled prev_page">« 上一页</span> <span class="current">1</span> <a href="http://wentao365.iteye.com/blog/903396?page=2#comments" rel="next">2</a> <a href="http://wentao365.iteye.com/blog/903396?page=2#comments" class="next_page" rel="next">下一页 »</a></div>
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://wentao365.iteye.com/login" style="background-color:white;"> <img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://wentao365.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 903396;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'maven 教程一 入门');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'maven 教程一 入门');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://wentao365.iteye.com/"><img alt="wentao365的博客" class="logo" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/3eccad72-7c53-3bbc-a489-e5cd34eb14ee.jpg" title="wentao365的博客: 刘文涛" width=""></a></div>
+  <div id="blog_owner_name">wentao365</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 449713 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 北京</li>
+              <li><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://wentao365.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://suey.iteye.com/" target="_blank"><img alt="suey的博客" class="logo" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/user-logo-thumb.gif" title="suey的博客: suey" width="48px"></a></div>
+                <div class="left"><a href="http://suey.iteye.com/" target="_blank" title="suey">suey</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://waterbabyok.iteye.com/" target="_blank"><img alt="waterbabyok的博客" class="logo" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/user-logo-thumb.gif" title="waterbabyok的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://waterbabyok.iteye.com/" target="_blank" title="waterbabyok">waterbabyok</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://himo-zhang.iteye.com/" target="_blank"><img alt="himo.zhang的博客" class="logo" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/367eaa31-ceb7-30e2-8319-ea67fb990f73-thumb.jpg" title="himo.zhang的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://himo-zhang.iteye.com/" target="_blank" title="himo.zhang">himo.zhang</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://a464587444.iteye.com/" target="_blank"><img alt="a464587444的博客" class="logo" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/user-logo-thumb.gif" title="a464587444的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://a464587444.iteye.com/" target="_blank" title="a464587444">a464587444</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://wentao365.iteye.com/">全部博客 (363)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/97218">oracle (43)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/97477">缓存策略 (4)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/97570">数据库设计 (7)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/98083">IntelliJ IDEA (8)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/98247">freemarker (3)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/98413">JSP (12)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/98866">java基础 (75)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/100801">tomcat (14)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/101835">服务器 (10)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/126032">maven (3)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/135219">linux (21)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/166074">e-learning (2)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/171503">手机开发 (1)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/176588">设计模式 (6)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/179188">技术之外 (2)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/179797">工具的使用 (8)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/189425">HTML 5 (5)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/141845">网站前台 (38)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/189851">网站后台 (11)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/191889">项目管理 (12)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/157110">面试题 (5)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/194523">幽默 (0)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/194805">系统架构 (8)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/199218">创业 (10)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/214599">div-css (5)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/215199">诗词歌赋 (1)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/220173">网络课堂组知识库 (4)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/220294">杂家 (3)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/223011">android (12)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/228704">框架 (14)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/235694">读书笔记 (1)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/246118">孙子兵法 (1)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/253135">mysql (3)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/256360">小人书 (0)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/300567">Jquery (6)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/308286">eclipse (2)</a></li>
+                
+                  <li><a href="http://wentao365.iteye.com/category/321855">正则表达式 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://wentao365.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://wentao365.iteye.com/blog/post">我的论坛</a> (16)
+                </li>
+                <li><a href="http://wentao365.iteye.com/blog/answered_problems">我的问答</a> (5)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://wentao365.iteye.com/blog/monthblog/2015-01">2015-01</a> (1)</li>
+                
+                  <li><a href="http://wentao365.iteye.com/blog/monthblog/2014-12">2014-12</a> (2)</li>
+                
+                  <li><a href="http://wentao365.iteye.com/blog/monthblog/2014-10">2014-10</a> (3)</li>
+                
+                <li><a href="http://wentao365.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+              <div id="comments_top">
+                <h5>评论排行榜</h5>
+                <ul>
+                  
+                    <li><a href="http://wentao365.iteye.com/blog/2047234" title="freemarker格式化">freemarker格式化</a></li>
+                  
+                    <li><a href="http://wentao365.iteye.com/blog/2144178" title="jstl利用fn截取字符串">jstl利用fn截取字符串</a></li>
+                  
+                </ul>
+              </div>
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://cashflow1985.iteye.com/" target="_blank" title="cashflow1985">cashflow1985</a>： 
+                  谢谢分享~~~~~~~~~~~~~~~~~~~~~~~~~~~ ...<br>
+                  <a href="http://wentao365.iteye.com/blog/903396#bc2368313">maven 教程一 入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://ripin-yan.iteye.com/" target="_blank" title="Ripin_Yan">Ripin_Yan</a>： 
+                  &lt;div class="quote_title ...<br>
+                  <a href="http://wentao365.iteye.com/blog/903396#bc2368115">maven 教程一 入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://xinnianjava.iteye.com/" target="_blank" title="xinnianjava">xinnianjava</a>： 
+                  你好！我配置好maven的环境变量后，可以看到版本为3.0.5 ...<br>
+                  <a href="http://wentao365.iteye.com/blog/903396#bc2368111">maven 教程一 入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://qibinggang.iteye.com/" target="_blank" title="qibinggang">qibinggang</a>： 
+                  读了之后，受益匪浅，可是书在哪里？<br>
+                  <a href="http://wentao365.iteye.com/blog/903513#bc2366998">maven 教程二 深入</a>
+                </li>
+                
+                <li>
+                  <a href="http://liuxiaomo.iteye.com/" target="_blank" title="liuxiaomo">liuxiaomo</a>： 
+                   ...<br>
+                  <a href="http://wentao365.iteye.com/blog/608695#bc2366687">关于论坛数据库的设计</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2015 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/tracking.js" type="text/javascript"></script>
+
+    
+<script type="text/javascript" src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/tongji.js"></script><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/tongji.do" border="0" width="1" height="1"><a href="http://tongji.linezing.com/report.html?unit_id=1283713" target="_blank"><img src="./maven 教程一 入门 - 刘文涛 - ITeye技术网站_files/stats.gif" border="0" alt="量子统计"></a>
+      
+    
+  
+
+</body></html>

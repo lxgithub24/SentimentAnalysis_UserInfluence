@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://www.tuicool.com/articles/bERZfe -->
+<html><style type="text/css" id="780595000"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="cr+7yTno64+xCtNoZk91MprA3CitTnTPc+fkR3tIl2o=" name="csrf-token">
+    <title>
+            用webmagic实现的网络爬虫 - 推酷
+   </title>
+    <meta name="description" content="用webmagic实现的网络爬虫">
+    <meta property="qc:admins" content="2040660764645137746375">
+  <link rel="shortcut icon" href="http://static0.tuicool.com/favicon.ico" type="image/x-icon">
+  <link href="./用webmagic实现的网络爬虫 - 推酷_files/application-50a926af7d9f990f21e61e4dcff3bc48.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+  <script async="" type="text/javascript" src="./用webmagic实现的网络爬虫 - 推酷_files/ca-pub-7054762349007490.js"></script><script src="./用webmagic实现的网络爬虫 - 推酷_files/application-5272668a8ed427c5225cac7c6110da64.js" type="text/javascript"></script>
+
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/font-awesome-ie7.min.css">
+  <![endif]--> 
+    <script type="text/javascript" src="./用webmagic实现的网络爬虫 - 推酷_files/tip.js"></script>
+    <!-- <script src="http://asset.tuicool.com/assets/tip-9521a713b7f927945b657df78aec9c28.js" type="text/javascript"></script> -->
+  
+  <script type="text/javascript" src="./用webmagic实现的网络爬虫 - 推酷_files/m.js"></script>
+<script type="text/javascript" src="./用webmagic实现的网络爬虫 - 推酷_files/spin.min.js"></script><style type="text/css"></style>
+<link rel="stylesheet" href="http://static0.tuicool.com/assets/github.css">
+
+<script src="./用webmagic实现的网络爬虫 - 推酷_files/share.js"></script><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_style1_24.css"><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_popup.css?v=ecc6050c.css"></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./用webmagic实现的网络爬虫 - 推酷_files/o(1).htm" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./用webmagic实现的网络爬虫 - 推酷_files/o.htm" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+  
+  <div id="header" class="navbar-fixed-top">
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </a>
+          <a href="http://www.tuicool.com/" class="brand">推酷</a>        
+        <nav class="nav-collapse collapse">
+            <ul class="nav navbar primary-nav">                            
+              <li class="active">
+                <a href="http://www.tuicool.com/ah">
+                  文章
+                </a>
+              </li>              
+              <li class="">
+                <a href="http://www.tuicool.com/sites/hot">
+                  站点
+                </a>
+              </li>
+              <li class="">
+                <a href="http://www.tuicool.com/topics">
+                  主题
+                </a>
+              </li>
+              <li class="">
+                <a href="http://course.tuicool.com/">
+                  公开课
+                </a>
+              </li>
+              <li class="">
+                <a href="http://huodong.tuicool.com/">
+                  活动
+                </a>
+              </li>
+              <li class="">
+                <a href="http://www.tuicool.com/mobile">
+                  客户端
+                    <sup style="font-size:0.8em;color: #16A085;">荐</sup>
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="http://www.tuicool.com/articles/bERZfe#" class="dropdown-toggle" data-toggle="dropdown">周刊 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://www.tuicool.com/mags">编程狂人</a></li>
+                  <li><a href="http://www.tuicool.com/mags/design">设计匠艺</a></li> 
+                  <li><a href="http://www.tuicool.com/articles/weekly">一周拾遗</a></li>                  
+                </ul>
+              </li>
+              
+               <li class="dropdown">
+                <a href="http://www.tuicool.com/articles/bERZfe#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://www.tuicool.com/bbs">讨论区</a></li>  
+                  <li><a href="http://www.tuicool.com/about">关于我们</a></li>                 
+                </ul>
+              </li>
+              
+              </ul>
+            <form class="navbar-search pull-left" action="http://www.tuicool.com/search">
+              <input type="text" class="search-query span2" name="kw" placeholder="搜索">
+            </form>
+            <ul class="nav pull-right">
+                <li><a href="http://www.tuicool.com/login">登录</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+  </div>   
+</div>
+  <div id="flash_container" class="noPrint">    
+  </div>
+  
+  <div class="container-fluid">  
+    <div class="row-fluid">
+    <div class="span8 contant article_detail_bg">
+        <h1>用webmagic实现的网络爬虫</h1>
+        <div class="article_meta">
+            <span class="timestamp">时间&nbsp;2014-11-03 00:00:32
+            </span>
+            <span class="from">
+                <i class="icon-globe"></i>
+                    <a class="cut cut28 from" href="http://www.tuicool.com/sites/jaeeAn" target="_blank">ITeye-博客
+                    </a>
+            </span>
+            <span class="source" style="display:block;"><i style="float:left;">原文</i>&nbsp; 
+                <a class="cut cut70" href="http://448230305.iteye.com/blog/2151691?utm_source=tuicool" style="display:inline-block;">http://448230305.iteye.com/blog/2151691</a>
+            </span>
+        </div>
+        <div class="article_body" id="nei">
+            <div> 
+ <p> <span>用 <span>webmagic</span> <span>实现的网络爬虫</span> </span> </p> 
+ <p> <span>网络蜘蛛</span> <span>（网络爬虫）</span> <span>Web&nbsp;Spider</span> <span>是一个非常形象的比喻，如果我们的网络是一个蜘蛛网，每个节点就是一个网站，联系每个节点的蜘蛛丝就是我们网站的连接。网络爬虫的原理其实不难理解——</span> <span>通过网页的链接地址来寻找网页，从&nbsp;网站某一个页面（通常是首页）开始，读取网页的内容，找到在网页中的其它链接地址，然后通过这些链接地址寻找下一个网页，这样一直循环下去，直到把这个网站所有的网页都抓取完为止</span> <span>。</span> </p> 
+ <p> <span>网络爬虫的实现：</span> </p> 
+ <p> <span>之前我共享了一个例子，它实现了最基本的网络爬虫——将网站的数据经过简单解析输出到控制台；</span> </p> 
+ <p> <span> <a href="http://448230305.iteye.com/admin/blogs/2145296" rel="nofollow,noindex"> <span>http://448230305.iteye.com/admin/blogs/2145296</span> </a> </span> </p> 
+ <p> <span>可是在现实中我们不可能只是把它输出到控制台：很多情况下我们还有更复杂的需求；</span> </p> 
+ <p> <span> <span>1. <span>&nbsp;</span> </span> </span> <span>需要将它们存储到数据库；</span> </p> 
+ <p> <span> <span>2. <span>&nbsp;</span> </span> </span> <span>需要将它们存储到 <span>redis</span> <span>、文件里；</span> </span> </p> 
+ <p> <span> <span>3. <span>&nbsp;</span> </span> </span> <span>并且我们还需要我们的爬虫识别已经爬过的网站，避免我们的存储设备中出现重复；</span> </p> 
+ <p> <span> <span>4. <span>&nbsp;</span> </span> </span> <span>对于一些需要登录的网站，我们需要让它实现模拟登录；</span> </p> 
+ <p> <span> <span>5. <span>&nbsp;</span> </span> </span> <span>某些网站是用前端渲染的，这些网站的数据从源码中不能直接看到，如何处理？</span> </p> 
+ <p> <span>知识储备：</span> </p> 
+ <p> <span>要解决这一问题：</span> </p> 
+ <p> <span>首先我们需要对以下知识有了解：</span> </p> 
+ <p> <span>Spring</span> </p> 
+ <p> <span>MyBatis</span> </p> 
+ <p> <span> <a href="http://mybatis.github.io/spring/zh/" rel="nofollow,noindex"> <span>MyBatis-Spring</span> </a> </span> <span>（ <span>http://mybatis.github.io/spring/zh/</span> <span>）</span> </span> </p> 
+ <p> <span>当然，学习最快的方法就是在网上找一个 <span>demo</span> <span>，然后按照那个</span> <span>demo</span> <span>自己实现一个，我这里为大家提供一个获取招聘信息的爬虫</span> <span>demo</span> <span>：</span> <span>jobhunter</span> <span>：</span> </span> </p> 
+ <p> <span> <a href="https://github.com/webmagic-io/jobhunter" rel="nofollow,noindex"> <span>https://github.com/webmagic-io/jobhunter</span> </a> </span> </p> 
+ <p> <span>在认真看懂这个 <span>demo</span> <span>之后，我们需要做的就是自己去实现一个</span> <span>demo</span> <span>；</span> </span> </p> 
+ <p> <span> <span>1、</span> </span> <span>目录结构：</span> </p> 
+ <p> <span> <img alt="" src="./用webmagic实现的网络爬虫 - 推酷_files/IryARr.jpg" class="alignCenter"> </span> </p> 
+ <p> <span> <span>2、</span> </span> <span>Resources <span>：</span> </span> </p> 
+ <p> <span>Resources <span>里存放着数据库连接的配置文件和</span> <span>spring-myBatis</span> <span>的配置文件：</span> </span> </p> 
+ <p> <span> <img alt="" src="./用webmagic实现的网络爬虫 - 推酷_files/vMnEjq.jpg" class="alignCenter"> 这些文件很多，我就不全部给大家看了~只给大家看一下数据库配置方面的： </span> </p> 
+ <p> <span>&lt;bean&nbsp;id="dataSource"&nbsp;class="org.apache.commons.dbcp.BasicDataSource"</span> </p> 
+ <p> <span>destroy-method="close"&gt;</span> </p> 
+ <p> <span>&lt;property&nbsp;name="driverClassName"&nbsp;value="com.mysql.jdbc.Driver"&nbsp;/&gt;</span> </p> 
+ <p> <span>&lt;property&nbsp;name="url"&nbsp;value="jdbc:mysql://localhost:3306/search_show?characterEncoding=UTF-8"&nbsp;/&gt;</span> </p> 
+ <p> <span>&lt;property&nbsp;name="username"&nbsp;value="root"&nbsp;/&gt;</span> </p> 
+ <p> <span>&lt;property&nbsp;name="password"&nbsp;value=""&nbsp;/&gt;</span> </p> 
+ <p> <span>&lt;/bean&gt;</span> </p> 
+ <p> <span>url、username、password分别对应数据库的地址、用户名、密码；</span> </p> 
+ <p> <span> <span>3、</span> </span> <span>引用 <span>jar</span> <span>包：</span> </span> </p> 
+ <p> <span>我们这个工程使用的是 <span>idea+maven+git</span> <span>模式进行开发，没有用过这个模式的同学可自行脑补：</span> </span> </p> 
+ <p> <span>Idea <span>：</span> </span> <span> <a href="http://www.jetbrains.com/idea/" rel="nofollow,noindex"> <span>http://www.jetbrains.com/idea/</span> </a> </span> </p> 
+ <p> <span>Maven <span>：</span> </span> <span> <a href="http://my.oschina.net/huangyong/blog/194583" rel="nofollow,noindex"> <span>http://my.oschina.net/huangyong/blog/194583</span> </a> </span> </p> 
+ <p> <span>Git <span>：</span> </span> <span> <a href="http://my.oschina.net/huangyong/blog/200075" rel="nofollow,noindex"> <span>http://my.oschina.net/huangyong/blog/200075</span> </a> </span> </p> 
+ <p> <span>顺便说一下： <span>maven</span> <span>在配置环境变量时，最好配在系统变量里，第一次我配在环境变量里的时候就失败了。暂时还找不出原因……有知道的可以留言告诉我哦。</span> </span> </p> 
+ <p> <span>在 <span>maven</span> <span>中我们需要引用的</span> <span>jar</span> <span>包有：</span> </span> </p> 
+ <p> <span>&lt;properties&gt;</span> </p> 
+ <p> <span>&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span> </p> 
+ <p> <span>&lt;!--&nbsp;m2eclipse&nbsp;wtp&nbsp;0.12+&nbsp;enabled&nbsp;to&nbsp;configure&nbsp;contextRoot,&nbsp;add&nbsp;by&nbsp;w.vela&nbsp;--&gt;</span> </p> 
+ <p> <span>&lt;m2eclipse.wtp.contextRoot&gt;/&lt;/m2eclipse.wtp.contextRoot&gt;</span> </p> 
+ <p> <span>&lt;spring-version&gt;3.1.1.RELEASE&lt;/spring-version&gt;</span> </p> 
+ <p> <span>&lt;spring-security-version&gt;3.1.0.RELEASE&lt;/spring-security-version&gt;</span> </p> 
+ <p> <span>&lt;/properties&gt;</span> </p> 
+ <p> <span>&lt;dependencies&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;0.5.2&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;webmagic-core&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;0.5.2&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;webmagic-extension&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;${spring-version}&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;org.apache.commons&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;3.1&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;servlet-api&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;2.5&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;mysql&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;5.1.18&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;commons-dbcp&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;1.3&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;junit&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;junit&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;4.7&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;scope&gt;test&lt;/scope&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;3.1.1&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;1.1.1&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;commons-logging&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;1.1.1&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span>&lt;dependency&gt;</span> </p> 
+ <p> <span>&lt;groupId&gt;org.springframework&lt;/groupId&gt;</span> </p> 
+ <p> <span>&lt;artifactId&gt;spring-test&lt;/artifactId&gt;</span> </p> 
+ <p> <span>&lt;version&gt;${spring-version}&lt;/version&gt;</span> </p> 
+ <p> <span>&lt;scope&gt;test&lt;/scope&gt;</span> </p> 
+ <p> <span>&lt;/dependency&gt;</span> </p> 
+ <p> <span> <span>4、</span> </span> <span>Dao <span>实现：</span> </span> </p> 
+ <p> <span> <img alt="" src="" style=""> </span> </p> 
+ <p> <span>Dao是数据库交互的接口，sql语句就写在里面，我们看一下Tiebar_Dao,这里存放着对Tiebar主贴表的增删改查；</span> </p> 
+ <p> <span>package&nbsp;demo.show.dao;</span> </p> 
+ <p> <span>import&nbsp;demo.show.model.Tirbarsubject;</span> </p> 
+ <p> <span>import&nbsp;org.apache.ibatis.annotations.Insert;</span> </p> 
+ <p> <span>import&nbsp;org.apache.ibatis.annotations.Select;</span> </p> 
+ <p> <span>import&nbsp;java.util.List;</span> </p> 
+ <p> <span>public&nbsp;interface&nbsp;Tiebar_Dao&nbsp;{</span> </p> 
+ <p> <span>@Insert("insert&nbsp;into&nbsp;t_po_tieba&nbsp;(`TITLE`,`ADDRESS`,`DATETIME`,`CONTENT`,`HTS`,`USER`,`TB_TYPE`)&nbsp;values&nbsp;(#{title},#{address},#{dateTime},#{content},#{hts},#{user},#{tb_type})")</span> </p> 
+ <p> <span>public&nbsp;int&nbsp;add(Tirbarsubject&nbsp;tir);</span> </p> 
+ <p> <span>@Select("select&nbsp;PK_TIEBA_ID,ADDRESS&nbsp;from&nbsp;t_po_tieba")</span> </p> 
+ <p> <span>public&nbsp;List&lt;Tirbarsubject&gt;&nbsp;get_resources();</span> </p> 
+ <p> <span>@Select("select&nbsp;ADDRESS&nbsp;from&nbsp;t_po_tieba&nbsp;where&nbsp;ADDRESS=#{address}")</span> </p> 
+ <p> <span>public&nbsp;Tirbarsubject&nbsp;get_resource(String&nbsp;Address);</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>当我们要使用这些操作时，直接调用这些方法就可以，逻辑里是看不到 <span>sql</span> <span>语句的；</span> </span> </p> 
+ <p> <span> <span>5、</span> </span> <span>Model <span>：</span> </span> </p> 
+ <p> <span>细心的朋友可能会注意到， <span>Tirbarsubject</span> <span>是我们定义在</span> <span>Model</span> <span>文件夹里的类，这个类就是我们数据库一个表的</span> <span>model</span> <span>；</span> </span> </p> 
+ <p> <span>package&nbsp;demo.show.model;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.Page;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.model.AfterExtractor;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.model.annotation.Formatter;</span> </p> 
+ <p> <span>import&nbsp;java.io.Serializable;</span> </p> 
+ <p> <span>import&nbsp;java.util.Date;</span> </p> 
+ <p> <span>/**</span> </p> 
+ <p> <span>*&nbsp;Created&nbsp;by&nbsp;qxy&nbsp;on&nbsp;2014-10-24.</span> </p> 
+ <p> <span>*/</span> </p> 
+ <p> <span>public&nbsp;class&nbsp;Tirbarsubject&nbsp;implements&nbsp;AfterExtractor,Serializable&nbsp;{</span> </p> 
+ <p> <span>private&nbsp;int&nbsp;id;</span> </p> 
+ <p> <span>private&nbsp;String&nbsp;title;</span> </p> 
+ <p> <span>private&nbsp;String&nbsp;content;</span> </p> 
+ <p> <span>@Formatter("yyyy-MM-dd&nbsp;HH:mm")</span> </p> 
+ <p> <span>private&nbsp;Date&nbsp;dateTime;</span> </p> 
+ <p> <span>private&nbsp;String&nbsp;address;</span> </p> 
+ <p> <span>private&nbsp;int&nbsp;hts;</span> </p> 
+ <p> <span>private&nbsp;String&nbsp;user;</span> </p> 
+ <p> <span>private&nbsp;String&nbsp;tb_type;</span> </p> 
+ <p> <span>public&nbsp;String&nbsp;toString()&nbsp;{</span> </p> 
+ <p> <span>return&nbsp;"TiebaSubject{"&nbsp;+</span> </p> 
+ <p> <span>"id="&nbsp;+&nbsp;id&nbsp;+</span> </p> 
+ <p> <span>",&nbsp;Title="&nbsp;+&nbsp;title&nbsp;+</span> </p> 
+ <p> <span>",&nbsp;DateTime="&nbsp;+&nbsp;dateTime&nbsp;+</span> </p> 
+ <p> <span>",&nbsp;Address='"&nbsp;+&nbsp;address&nbsp;+&nbsp;'\''&nbsp;+</span> </p> 
+ <p> <span>",&nbsp;Content='"&nbsp;+&nbsp;content&nbsp;+&nbsp;'\''&nbsp;+</span> </p> 
+ <p> <span>",&nbsp;Hts='"+hts+'\''+</span> </p> 
+ <p> <span>",&nbsp;User='"+user+'\''+</span> </p> 
+ <p> <span>'}';</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>public&nbsp;int&nbsp;getId()&nbsp;{</span> </p> 
+ <p> <span>return&nbsp;id;</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>public&nbsp;void&nbsp;setId(int&nbsp;id)&nbsp;{</span> </p> 
+ <p> <span>this.id&nbsp;=&nbsp;id;</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>public&nbsp;String&nbsp;getTitle()&nbsp;{</span> </p> 
+ <p> <span>return&nbsp;title;</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>…………………………</span> </p> 
+ <p> <span>…………………………（中间的 <span>get</span> <span>和</span> <span>set</span> <span>方法我就不写了哈，篇幅有限）</span> </span> </p> 
+ <p> <span>public&nbsp;void&nbsp;setTb_type(String&nbsp;tb_type)&nbsp;{</span> </p> 
+ <p> <span>this.tb_type&nbsp;=&nbsp;tb_type;</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>@Override</span> </p> 
+ <p> <span>public&nbsp;void&nbsp;afterProcess(Page&nbsp;page)&nbsp;{</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>这里我们可以重写 <span>toString</span> <span>方法，如果不重写，它输出的是地址；</span> </span> </p> 
+ <p> <span> <span>6、</span> </span> <span>Process <span>：</span> </span> </p> 
+ <p> <span>页面解析部分不是我们今天要讲的重点，不过我们这里提一下：</span> </p> 
+ <p> <span> <span>1、</span> </span> <span>解析页面时解析的内容分为两部分：</span> </p> 
+ <p> <span>我们需要爬的连接 <span>+</span> <span>我们需要解析的页面；我们需要解析的页面里包含着我们要爬的连接；不过也有可能存在我们需要爬出来的内容与我们需要爬的网页连接存在不同的页面（比如贴吧页面）</span> </span> </p> 
+ <p> <span>但是逻辑是一样的，一般情况下，我们要爬出来的页面的地址都是有相同规律的，在抓取连接时；我们可以使用 <span>Xpath</span> <span>对它的位置进行定位，过滤掉一些跟它结构相似但是放在网页不同位置的连接，接着使用正则表达式截取即可，在页面中加上一个</span> <span>if</span> <span>判断，满足条件即加入待抓取队列中：</span> </span> </p> 
+ <p> <span>if&nbsp;(page.getUrl().regex(URL_PAGE).match()){</span> </p> 
+ <p> <span>System.out.println(page.getUrl().toString());</span> </p> 
+ <p> <span>LB&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='frs_list_pager']/").links().regex(URL_PAGE).all();</span> </p> 
+ <p> <span>for(int&nbsp;i=0;i&lt;LB.size();i++){</span> </p> 
+ <p> <span>LB.set(i,"http://tieba.baidu.com"+LB.get(i));</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>page.addTargetRequests(LB);</span> </p> 
+ <p> <span>NR&nbsp;=&nbsp;page.getHtml().links().regex(URL_CON).all();</span> </p> 
+ <p> <span>page.addTargetRequests(NR);</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>接着我们将抓取的页面放入我们的数据库里：</span> </p> 
+ <p> <span>首先是抓取：</span> </p> 
+ <p> <span>else&nbsp;{</span> </p> 
+ <p> <span>HT&nbsp;=&nbsp;page.getHtml().xpath("//li[@class='l_pager&nbsp;pager_theme_5&nbsp;pb_list_pager']/").regex(URL_HUITIE).all();</span> </p> 
+ <p> <span>for(int&nbsp;i=0;i&lt;HT.size();i++){</span> </p> 
+ <p> <span>HT.set(i,"http://tieba.baidu.com"+HT.get(i));</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>page.addTargetRequests(HT);</span> </p> 
+ <p> <span>// <span>解析页面</span> </span> </p> 
+ <p> <span>List&lt;String&gt;&nbsp;content_ht&nbsp;=&nbsp;new&nbsp;ArrayList&lt;String&gt;();</span> </p> 
+ <p> <span>List&lt;String&gt;&nbsp;user_ht&nbsp;=&nbsp;new&nbsp;ArrayList&lt;String&gt;();</span> </p> 
+ <p> <span>List&lt;String&gt;&nbsp;date_ht&nbsp;=&nbsp;new&nbsp;ArrayList&lt;String&gt;();</span> </p> 
+ <p> <span>List&lt;String&gt;&nbsp;lc&nbsp;=&nbsp;new&nbsp;ArrayList&lt;String&gt;();</span> </p> 
+ <p> <span>List&lt;String&gt;&nbsp;hufu_l&nbsp;=&nbsp;new&nbsp;ArrayList&lt;String&gt;();</span> </p> 
+ <p> <span>String&nbsp;address_ht;</span> </p> 
+ <p> <span>String&nbsp;address_zt=null;</span> </p> 
+ <p> <span>List&lt;Huitiesubject&gt;&nbsp;huitiesubjects_l&nbsp;=&nbsp;new&nbsp;ArrayList&lt;Huitiesubject&gt;();</span> </p> 
+ <p> <span>// <span>主贴解析</span> </span> </p> 
+ <p> <span>String&nbsp;tb_type=page.getHtml().xpath("//*[@id=\"wd1\"]").regex("value=\"(.+?)\"").regex("[^value=\"].+[^\"]").toString();</span> </p> 
+ <p> <span>String&nbsp;Title&nbsp;=&nbsp;page.getHtml().xpath("//div[@class='core_title&nbsp;core_title_theme_bright']/h1/text()").toString();</span> </p> 
+ <p> <span>String&nbsp;Address&nbsp;=&nbsp;page.getUrl().toString();</span> </p> 
+ <p> <span>String&nbsp;str_date&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='j_p_postlist']/").regex(XEGEX_TIME).toString();</span> </p> 
+ <p> <span>String&nbsp;Content&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='j_p_postlist']/div[@class='l_post&nbsp;l_post_bright&nbsp;noborder']/div[@class='d_post_content_main&nbsp;d_post_content_firstfloor']/div[1]/cc/div/text()").toString();</span> </p> 
+ <p> <span>String&nbsp;User&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='j_p_postlist']/div[@class='l_post&nbsp;l_post_bright&nbsp;noborder']/div[@class='d_author']/ul/li[3]/a/text()").toString();</span> </p> 
+ <p> <span>String&nbsp;Hts&nbsp;=&nbsp;page.getHtml().xpath("//*[@id='thread_theme_5']/div[1]/ul/li[2]/span[1]/text()").toString();</span> </p> 
+ <p> <span>// <span>回贴解析</span> </span> </p> 
+ <p> <span>content_ht&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='j_p_postlist']//div[3]/div[1]/cc/div/text()").all();</span> </p> 
+ <p> <span>user_ht&nbsp;=&nbsp;page.getHtml().xpath("//*[@id=\"j_p_postlist\"]/div/div[2]/ul/li[3]/a/text()").all();</span> </p> 
+ <p> <span>date_ht&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='j_p_postlist']/").regex(XEGEX_TIME).all();</span> </p> 
+ <p> <span>lc&nbsp;=&nbsp;page.getHtml().xpath("//div[@id='j_p_postlist']/").regex("(post_no":\\d+)").regex("\\d+").all();</span> </p> 
+ <p> <span>address_ht&nbsp;=&nbsp;Address;</span> </p> 
+ <p> <span>String&nbsp;zhengz=&nbsp;"(.+/\\d*)";</span> </p> 
+ <p> <span>Pattern&nbsp;p&nbsp;=&nbsp;Pattern.compile(zhengz);</span> </p> 
+ <p> <span>Matcher&nbsp;m=p.matcher(Address);</span> </p> 
+ <p> <span>接着，我们将他们存入数据库：</span> </p> 
+ <p> <span>// <span>主贴放入</span> </span> </p> 
+ <p> <span>tirbarsubject.setAddress(Address);</span> </p> 
+ <p> <span>tirbarsubject.setTitle(Title);</span> </p> 
+ <p> <span>tirbarsubject.setDateTime(Data_StrtoDate.ToYMDHM(str_date));</span> </p> 
+ <p> <span>tirbarsubject.setContent(Content);</span> </p> 
+ <p> <span>tirbarsubject.setUser(User);</span> </p> 
+ <p> <span>tirbarsubject.setHts(Integer.parseInt(Hts));</span> </p> 
+ <p> <span>tirbarsubject.setTb_type(tb_type);</span> </p> 
+ <p> <span>// <span>回帖放入</span> </span> </p> 
+ <p> <span>for&nbsp;(int&nbsp;i=0;i&lt;user_ht.size();i++){</span> </p> 
+ <p> <span>huitiesubject.setUser(user_ht.get(i));</span> </p> 
+ <p> <span>huitiesubject.setContent(content_ht.get(i));</span> </p> 
+ <p> <span>huitiesubject.setDateTime(Data_StrtoDate.ToYMDHM(date_ht.get(i)));</span> </p> 
+ <p> <span>huitiesubject.setZt_address(address_zt);</span> </p> 
+ <p> <span>huitiesubject.setAddress(address_ht);</span> </p> 
+ <p> <span>huitiesubject.setLc(Integer.parseInt(lc.get(i)));</span> </p> 
+ <p> <span>huitiesubjects_l.add(huitiesubject);</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>最后，将主贴的对象和回帖的对象放入 <span>page</span> <span>里：</span> </span> </p> 
+ <p> <span>page.putField("huifu_l",&nbsp;huitiesubjects_l);</span> </p> 
+ <p> <span>page.putField("tir",tirbarsubject);</span> </p> 
+ <p> <span> <span>7、</span> </span> <span>Pipeline <span>：</span> </span> </p> 
+ <p> <span>Pipeline <span>是将我们解析出来的数据存到数据库里的最后一步操作，代码比较少，也比较容易懂，我们就直接上代码吧：</span> </span> </p> 
+ <p> <span>package&nbsp;demo.show.pipeline;</span> </p> 
+ <p> <span>import&nbsp;demo.show.dao.Huitie_Dao;</span> </p> 
+ <p> <span>import&nbsp;demo.show.dao.Tiebar_Dao;</span> </p> 
+ <p> <span>import&nbsp;demo.show.model.Huitiesubject;</span> </p> 
+ <p> <span>import&nbsp;demo.show.model.Tirbarsubject;</span> </p> 
+ <p> <span>import&nbsp;org.springframework.stereotype.Repository;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.ResultItems;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.Task;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.pipeline.Pipeline;</span> </p> 
+ <p> <span>import&nbsp;javax.annotation.Resource;</span> </p> 
+ <p> <span>import&nbsp;java.util.List;</span> </p> 
+ <p> <span>@Repository("S_t_Pipeline")</span> </p> 
+ <p> <span>public&nbsp;class&nbsp;S_t_Pipeline&nbsp;implements&nbsp;Pipeline&nbsp;{</span> </p> 
+ <p> <span>@Resource</span> </p> 
+ <p> <span>private&nbsp;Tiebar_Dao&nbsp;tiebar_dao;</span> </p> 
+ <p> <span>@Resource</span> </p> 
+ <p> <span>private&nbsp;Huitie_Dao&nbsp;huitiedao;</span> </p> 
+ <p> <span>@Override</span> </p> 
+ <p> <span>public&nbsp;void&nbsp;process(ResultItems&nbsp;resultItems,&nbsp;Task&nbsp;task)&nbsp;{</span> </p> 
+ <p> <span>Tirbarsubject&nbsp;ts=resultItems.get("tir");</span> </p> 
+ <p> <span>List&lt;Huitiesubject&gt;&nbsp;ht_l&nbsp;=&nbsp;resultItems.get("huifu_l");</span> </p> 
+ <p> <span>Tirbarsubject&nbsp;Address&nbsp;=&nbsp;tiebar_dao.get_resource(ts.getAddress());</span> </p> 
+ <p> <span>if(ts!=null&amp;&amp;Address==null&amp;&amp;ts.getUser()!=null)&nbsp;{</span> </p> 
+ <p> <span>System.out.print(" <span>主题：</span> <span>"+ts.getTb_type()+"\n");</span> </span> </p> 
+ <p> <span>System.out.println(" <span>插入主贴&nbsp;</span> <span>:"&nbsp;+&nbsp;tiebar_dao.add(ts));</span> </span> </p> 
+ <p> <span>}else{</span> </p> 
+ <p> <span>System.out.println("ts&nbsp;is&nbsp;null");</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>for&nbsp;(int&nbsp;i=0;i&lt;ht_l.size();i++){</span> </p> 
+ <p> <span>if&nbsp;(ht_l!=null&amp;&amp;huitiedao.get_resource_addr(ht_l.get(i).getContent())==null){</span> </p> 
+ <p> <span>//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(" <span>主贴地址：</span> <span>"+ht_l.get(i).getAddress()+"\n");</span> </span> </p> 
+ <p> <span>System.out.println(" <span>插入回帖&nbsp;</span> <span>:"&nbsp;+&nbsp;huitiedao.add(ht_l.get(i)));</span> </span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>else&nbsp;{</span> </p> 
+ <p> <span>System.out.println("huifu&nbsp;is&nbsp;null");</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span> <span>8、</span> </span> <span>主函数：</span> </p> 
+ <p> <span>package&nbsp;demo;</span> </p> 
+ <p> <span>import&nbsp;demo.show.dao.Tiebar_Dao;</span> </p> 
+ <p> <span>import&nbsp;demo.show.processor.TiebarProcessor;</span> </p> 
+ <p> <span>import&nbsp;org.springframework.beans.factory.annotation.Autowired;</span> </p> 
+ <p> <span>import&nbsp;org.springframework.beans.factory.annotation.Qualifier;</span> </p> 
+ <p> <span>import&nbsp;org.springframework.context.ApplicationContext;</span> </p> 
+ <p> <span>import&nbsp;org.springframework.context.support.ClassPathXmlApplicationContext;</span> </p> 
+ <p> <span>import&nbsp;org.springframework.stereotype.Controller;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.Spider;</span> </p> 
+ <p> <span>import&nbsp;us.codecraft.webmagic.pipeline.Pipeline;</span> </p> 
+ <p> <span>import&nbsp;javax.annotation.Resource;</span> </p> 
+ <p> <span>@Controller</span> </p> 
+ <p> <span>public&nbsp;class&nbsp;S_Enter{</span> </p> 
+ <p> <span>@Qualifier("S_t_Pipeline")</span> </p> 
+ <p> <span>@Autowired(required&nbsp;=&nbsp;true)</span> </p> 
+ <p> <span>private&nbsp;Pipeline&nbsp;S_t_Pipeline;</span> </p> 
+ <p> <span>@Resource</span> </p> 
+ <p> <span>private&nbsp;Tiebar_Dao&nbsp;tiebar_dao;</span> </p> 
+ <p> <span>private&nbsp;String[]&nbsp;url_l&nbsp;=&nbsp;new&nbsp;String[3];</span> </p> 
+ <p> <span>public&nbsp;String[]&nbsp;getUrl_l()&nbsp;{</span> </p> 
+ <p> <span>return&nbsp;url_l;</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>public&nbsp;void&nbsp;setUrl_l(String[]&nbsp;url_l)&nbsp;{</span> </p> 
+ <p> <span>this.url_l&nbsp;=&nbsp;url_l;</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>public&nbsp;void&nbsp;crawl(){</span> </p> 
+ <p> <span>Spider.create(new&nbsp;TiebarProcessor()).addUrl(url_l).addPipeline(S_t_Pipeline).thread(5).run();</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{</span> </p> 
+ <p> <span>String[]&nbsp;url_l&nbsp;=&nbsp;new&nbsp;String[3];</span> </p> 
+ <p> <span>url_l[0]="http://tieba.baidu.com/f?kw= <span>湖南大学</span> <span>&amp;pn=0";</span> </span> </p> 
+ <p> <span>url_l[1]="http://tieba.baidu.com/f?kw= <span>古剑奇谭</span> <span>&amp;pn=0";</span> </span> </p> 
+ <p> <span>url_l[2]="http://tieba.baidu.com/f?kw= <span>暴走大事件</span> <span>&amp;pn=0";</span> </span> </p> 
+ <p> <span>ApplicationContext&nbsp;applicationContext&nbsp;=&nbsp;new&nbsp;ClassPathXmlApplicationContext("classpath:/spring/applicationContext*.xml");</span> </p> 
+ <p> <span>S_Enter&nbsp;s_enter&nbsp;=&nbsp;applicationContext.getBean(S_Enter.class);</span> </p> 
+ <p> <span>s_enter.setUrl_l(url_l);</span> </p> 
+ <p> <span>s_enter.crawl();</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>}</span> </p> 
+ <p> <span>结语：这就是使用</span> <span>webmagic <span>框架实现的一个爬百度贴吧的爬虫，当然这个例子实现的只是对</span> <span>html</span> <span>的解析，对于那些使用</span> <span>js</span> <span>渲染的网页暂时还没有涉及，这些网页一般有两种方法，一个是使用浏览器模拟器，让爬虫将渲染好的页面下载下来，或者使用谷歌火狐浏览器中的审查元素功能去查看要爬的数据源。这也是比较麻烦的，所以爬虫也是一个非常考验人耐心的事情哦</span> <span>~~</span> </span> </p> &lt;!--EndFragment--&gt;
+</div>
+        </div>
+        <div class="article_social">
+        <div class="article_like">
+                <button class="btn btn-large btn-like" id="my_like2" data_id="bERZfe">
+                    <i class="icon-heart-empty"></i>
+                    赞一个
+                </button>
+                <button class="btn btn-large btn-fav liked" id="my_like" data_id="bERZfe">
+                    <i class="icon-star-empty"></i>
+                    收 藏
+                </button>
+        </div>
+        <div class="bottom_ad huodong-detail-ad-banner clearfix">
+                <script type="text/javascript">
+      var cpro_id = "u1665123";
+    </script>
+    <script src="./用webmagic实现的网络爬虫 - 推酷_files/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u1665123_0"><iframe id="cproIframe_u1665123_1" width="580" height="90" src="./用webmagic实现的网络爬虫 - 推酷_files/acom.htm" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="./用webmagic实现的网络爬虫 - 推酷_files/acom"></script>
+
+        </div>
+        </div>
+           <div id="site_articles">
+              <div class="article-part-title">
+                <span>推荐文章</span>
+              </div>
+          <ul class="side_article_list">
+                <li class="side_article_list_item">
+                    1.<a href="http://www.tuicool.com/articles/EBV3eyR" target="_blank" title="菜鸟译文（三）——JDK6和JDK7中substring()方法的对比">
+                    菜鸟译文（三）——JDK6和JDK7中substring()方法的对比
+                </a>
+                </li>
+                <li class="side_article_list_item">
+                    2.<a href="http://www.tuicool.com/articles/Ujmyeuu" target="_blank" title="Java知多少（22）方法重载">
+                    Java知多少（22）方法重载
+                </a>
+                </li>
+                <li class="side_article_list_item">
+                    3.<a href="http://www.tuicool.com/articles/vuAnUjM" target="_blank" title="开发常用代码块">
+                    开发常用代码块
+                </a>
+                </li>
+                <li class="side_article_list_item">
+                    4.<a href="http://www.tuicool.com/articles/beeIJ3" target="_blank" title="jeewx-api.jar入门教程">
+                    jeewx-api.jar入门教程
+                </a>
+                </li>
+                <li class="side_article_list_item">
+                    5.<a href="http://www.tuicool.com/articles/7fqIbe" target="_blank" title="[英] 成为一名优秀的 Java 开发者">
+                    [英] 成为一名优秀的 Java 开发者
+                </a>
+                </li>
+                <li class="side_article_list_item">
+                    6.<a href="http://www.tuicool.com/articles/j2MFNnR" target="_blank" title="Spring Boot 1.2.3 发布">
+                    Spring Boot 1.2.3 发布
+                </a>
+                </li>
+         </ul>
+        </div>
+
+        <div id="kan_articles"></div>
+        <div id="article_weibo" style="display:none;">
+            <div class="article-part-title">
+                <span>相关微博</span>
+                <sub>
+                    <a href="http://www.tuicool.com/articles/weibo_list/bERZfe" target="_blank">(<i id="weibo_num"></i>)</a> 
+               </sub>
+            </div>
+            <div class="related-weibo-list"></div>
+        </div>
+        <div class="comments">
+    <div class="comments-area">
+    <div class="comments-header">
+        <h5>我来评几句</h5>
+        <div class="alert comment-alert alert-error" style="display:none;">
+            错误
+        </div>
+            <textarea cols="60" rows="5" id="comment-body" placeholder="请输入评论内容..."></textarea>
+            <span class="btn btn-medium btn-submit" id="comment-submit">登录后评论</span>
+        <p style="margin-top: 5px;margin-left:10px;">
+            已发表评论数(<span class="comment_cnt">0</span>)
+        </p>
+    </div>
+    <div class="comments-list">
+        <div class="empty-cmts alert alert-success" style="display:none;">
+            没有更多评论了^^
+        </div>
+    </div>
+    <div class="more-comments" style="display:none;">
+        <a href="">更多评论</a>
+    </div>
+    <div class="load-fail" style="display: none;">
+        评论加载失败，<a href="javascript:reload_comments('bERZfe',1,0,-1);">重新加载</a>
+    </div>
+    </div>
+</div>
+
+    </div>
+         <div class="span4 article_right_side">
+             <div class="search article_detail_bg">
+                <form class="form-search" action="http://www.tuicool.com/search">
+                    <input name="t" value="1" type="hidden">
+                    <input type="text" class="input-large search-query" name="kw" placeholder="搜索文章">
+                </form>
+             </div>
+            <div class="right_top">
+    <div class="article_related_site article_detail_bg">
+    <h4 class="article-part-title">相关站点</h4>
+    <div class="article_related_site_body clearfix">
+        <div class="logo">
+            <img src="./用webmagic实现的网络爬虫 - 推酷_files/jaeeAn.png">
+        </div>
+        <div class="name">
+            <div>
+                    <a href="http://www.tuicool.com/sites/jaeeAn" target="_blank"> ITeye-博客</a>
+            </div>
+            <div>
+                    <input type="button" class="btn btn-success right_site_follow" value="+ 订阅" id="my_follow" data_id="jaeeAn">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="related_topics" class="related_topics2 article_detail_bg">
+    <h4 class="article-part-title">相关主题</h4>
+    <ul class="clearfix">
+        <li>
+            <a href="http://www.tuicool.com/topics/11020196" target="_blank" class="kan-item-head">
+              <small>WebMagic</small>
+              <img class="kan-cover" src="./用webmagic实现的网络爬虫 - 推酷_files/11020196.png" alt="WebMagic">
+            </a>
+        </li>
+        <li>
+            <a href="http://www.tuicool.com/topics/11080047" target="_blank" class="kan-item-head">
+              <small>Xpath</small>
+              <img class="kan-cover" src="./用webmagic实现的网络爬虫 - 推酷_files/11080047.png" alt="Xpath">
+            </a>
+        </li>
+        <li>
+            <a href="http://www.tuicool.com/topics/11000064" target="_blank" class="kan-item-head">
+              <small>数据库</small>
+              <img class="kan-cover" src="./用webmagic实现的网络爬虫 - 推酷_files/11000064.png" alt="数据库">
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="right-ad">
+      <script type="text/javascript">BAIDU_CLB_fillSlot("1000377");</script><div id="BAIDU_DUP_wrapper_1000377_0"><iframe id="baidu_clb_slot_iframe_1000377_0" src="./用webmagic实现的网络爬虫 - 推酷_files/用webmagic实现的网络爬虫 - 推酷.htm" onload="BAIDU_DUP_CLB_renderFrame(&#39;1000377_0&#39;)" width="300" height="250" vspace="0" hspace="0" allowtransparency="true" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div><script charset="utf-8" src="./用webmagic实现的网络爬虫 - 推酷_files/ecom"></script><script charset="utf-8" src="./用webmagic实现的网络爬虫 - 推酷_files/fixed7o.js"></script>
+
+</div>
+<div class="right-ad" style="margin-top: 15px">
+       <script type="text/javascript">
+        var cpro_id = "u1735906";
+      </script>
+      <script src="./用webmagic实现的网络爬虫 - 推酷_files/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u1735906_0"><iframe id="cproIframe_u1735906_2" width="300" height="250" src="./用webmagic实现的网络爬虫 - 推酷_files/acom(2).htm" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="./用webmagic实现的网络爬虫 - 推酷_files/acom(1)"></script>
+
+</div>
+<div id="right_site_articles" class="article_detail_bg">
+    <div class="article-part-title">
+        <span>热门文章</span>
+    </div>
+    <ul class="side_article_list">
+        <li class="side_article_list_item">
+            1.<a href="http://www.tuicool.com/articles/7fqIbe" target="_blank" title="[英] 成为一名优秀的 Java 开发者"> [英] 成为一名优秀的 Java 开发者 </a>
+        </li>
+        <li class="side_article_list_item">
+            2.<a href="http://www.tuicool.com/articles/QFNFFfB" target="_blank" title="单例模式讨论篇：单例模式与垃圾回收"> 单例模式讨论篇：单例模式与垃圾回收 </a>
+        </li>
+        <li class="side_article_list_item">
+            3.<a href="http://www.tuicool.com/articles/JBF3em" target="_blank" title="Spring 4 and Java 8"> Spring 4 and Java 8 </a>
+        </li>
+        <li class="side_article_list_item">
+            4.<a href="http://www.tuicool.com/articles/AJRBFn" target="_blank" title="开发过程遇到的中文乱码问题"> 开发过程遇到的中文乱码问题 </a>
+        </li>
+        <li class="side_article_list_item">
+            5.<a href="http://www.tuicool.com/articles/EZbeuaJ" target="_blank" title="Java程序员最喜欢的11款免费IDE编辑器"> Java程序员最喜欢的11款免费IDE编辑器 </a>
+        </li>
+        <li class="side_article_list_item">
+            6.<a href="http://www.tuicool.com/articles/UnqUZrz" target="_blank" title="十个最常见的Java字符串问题"> 十个最常见的Java字符串问题 </a>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div class="operate_zone" style="position: fixed; top: 50px;">
+    <div class="container-body share-body">
+        <div class="article-part-title">
+            <span>分享本文</span>
+        </div>
+        <div class="share_zone">
+    <div class="bdsharebuttonbox bdshare-button-style1-24" data-bd-bind="1427930708977"> 
+         <a href="http://www.tuicool.com/articles/bERZfe#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="http://www.tuicool.com/articles/bERZfe#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+        <a href="http://www.tuicool.com/articles/bERZfe#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+        <a href="http://www.tuicool.com/articles/bERZfe#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+        <a href="http://www.tuicool.com/articles/bERZfe#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="http://www.tuicool.com/articles/bERZfe#" class="bds_more" data-cmd="more"></a>
+     </div>
+    <script>
+        window._bd_share_config = {
+            "common" : {
+                "bdSnsKey" : {
+                    "tsina" : "3113829255",
+                    "tqq" : "801536792"
+                },
+                "bdText" : "用webmagic实现的网络爬虫 (分享自 @推酷网)",
+                "bdMini" : "2",
+                "bdMiniList" : false,
+                "bdPic" : "http://aimg2.tuicool.com/6jmyMn.jpg",
+                "bdStyle" : "1",
+                "bdSize" : "24"
+            },
+            "share" : {}
+        };
+        with (document)
+        0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    </script>
+</div>
+    </div>
+        <script async="" src="./用webmagic实现的网络爬虫 - 推酷_files/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-7054762349007490" data-ad-slot="5705695566" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+         </div>
+</div>
+
+<div id="myLoginModal" class="modal hide fade">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>用户登陆</h3>
+    </div>
+    <div class="modal-body">
+        <form method="post" action="http://www.tuicool.com/login" class="form-horizontal" id="login-form">
+            <div class="control-group">
+                <input id="xlEmail" name="email" type="text" placeholder="邮箱">
+            </div>
+            <div class="control-group">
+                <input id="xlPassword" name="password" type="password" placeholder="密码">
+            </div>
+            <div class="control-group">
+                <button type="submit" class="btn btn-primary">
+                    &nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;陆&nbsp;&nbsp;
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="read-later-alert">
+</div>
+<div>
+   <a href="http://www.tuicool.com/articles/bERZfe#add-article-to-kan" id="add-article-to-kan-btn" class="btn" data-toggle="modal" style="display:none;">添加到推刊</a>
+   <!-- add_article to kan -->
+<div id="add-article-to-kan" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <span class="add-title">收藏到推刊</span>
+    <a href="http://www.tuicool.com/articles/bERZfe#new-kan" class="btn pull-right" data-toggle="modal">创建推刊</a>
+    <i class="clearfix"></i>
+  </div>
+  <div class="modal-body">
+    <ul id="add-kan-list">
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <input type="hidden" value="bERZfe" class="article-id"> 
+    <button class="btn btn-primary pull-left add-to-btn">  收 藏  </button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+<div class="add-article-to-kan-alert">
+  已收藏到推刊！
+</div>
+
+   <div id="new-kan" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-body">
+    <input type="text" name="name" id="new-kan-name" placeholder="推刊名(必填)" required="" data-validation-required-message="请填写推刊名">
+    <span class="new-ness-name">请填写推刊名</span>
+    <br>
+    <textarea name="desc" id="desc" rows="6" placeholder="推刊描述"></textarea>
+    <span class="new-ness-desc">描述不能大于100个字符!</span>
+    <br>
+    权限设置：<input type="radio" name="type" value="1" checked="checked"> 公开
+    <input type="radio" name="type" value="0"> 仅自己可见
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary pull-left create-kan-btn" disabled="">创建</button>
+    <button class="btn dismiss-new-kan" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+
+
+</div>
+<style type="text/css">
+    .btn-large {
+        padding: 0;
+    }
+    .load-fail {
+        display: none;
+    }
+</style>
+<script src="./用webmagic实现的网络爬虫 - 推酷_files/highlight.pack.js"></script>
+<script type="text/javascript">
+    $('table').each(function(i) {
+        var size = $(this).children().size();
+        if (size > 1) {
+            $(this).attr('class',"table table-bordered");
+        } else if (size == 1) {
+            var e11 = $(this).children(":first");
+            var e1 = e11[0];
+            var name = e1.nodeName.toLowerCase();
+            if ("tbody" == name) {
+                if (e11.children().size() > 1) {
+                     $(this).attr('class',"table table-bordered");
+                }
+            }
+        }
+    });
+        window.page = 0;
+        window.last = 0;    
+        window.first = true;
+        resize_article_image('#nei', 550);
+                load_comments("bERZfe",1,0,-1);
+                window.uid = -1;
+        open_add_article_to_kan("false");
+        async_do_like2_article(); 
+        $('pre').each(function(i, e) {
+            hljs.highlightBlock(e, "<span class='indent'>  </span>", false)
+        });
+       
+          
+       handle_follow_site("#my_follow","已订阅","+ 订阅");
+</script>
+
+
+  </div>
+
+    <div class="footer">
+    <div class="footer-inner">
+    <dl class="about-link site-link">
+        <dt>
+            网站相关
+        </dt>
+        <dd>
+            <a target="_blank" href="http://www.tuicool.com/about">关于我们</a>
+        </dd>
+        <dd>
+            <a target="_blank" href="http://www.tuicool.com/mobile">移动应用</a>
+        </dd>
+        <dd>
+            <a target="_blank" href="http://www.tuicool.com/bbs/go/issues">建议反馈</a>
+        </dd>
+    </dl>
+    <dl class="site-link follow-link">
+        <dt>
+            关注我们
+        </dt>
+        <dd>
+            <a target="_blank" href="http://e.weibo.com/tuicool2012"><img src="./用webmagic实现的网络爬虫 - 推酷_files/weibo-32.png">推酷网</a>
+        </dd>
+        <dd><img src="./用webmagic实现的网络爬虫 - 推酷_files/weixin-32.png">tuicool2012
+        </dd>
+        <dd><img src="./用webmagic实现的网络爬虫 - 推酷_files/qun-54.png">QQ群:164644910
+        </dd>
+    </dl>
+    <dl class="site-link links">
+        <dt>
+            友情链接
+        </dt>
+        <dd>
+                <a href="http://www.woshipm.com/" title="人人都是产品经理" target="_blank">人人都是产品经理</a>
+                <a href="http://www.tmtforum.com/" title="TMTForum" target="_blank">TMTForum</a>
+                <a href="http://www.moobuu.com/" title="魔部网" target="_blank">魔部网</a>
+                <a href="http://www.pm265.com/" title="PM256" target="_blank">PM256</a>
+                <a href="http://www.pintu360.com/" title="品途网" target="_blank">品途网</a>
+                <a href="http://www.yidonghua.com/" title="移动信息化" target="_blank">移动信息化</a>
+                <a href="http://www.snsiu.com/" title="行晓网" target="_blank">行晓网</a>
+                <a href="http://code4app.com/" title="Code4App" target="_blank">Code4App</a>
+                <a href="http://www.taskcity.com/" title="智城外包网" target="_blank">智城外包网</a>
+                <a href="http://blog.lamper.cn/" title="LAMP人" target="_blank">LAMP人</a>
+                <a href="http://www.apkway.com/forum.php" title="安卓航班网" target="_blank">安卓航班网</a>
+                <a href="http://www.huxiu.com/" title="虎嗅" target="_blank">虎嗅</a>
+                <a href="http://www.ycpai.com/" title="缘创派" target="_blank">缘创派</a>
+                <a href="http://www.iterduo.com/" title="IT耳朵" target="_blank">IT耳朵</a>
+                <a href="http://www.iresearch.cn/" title="艾瑞网" target="_blank">艾瑞网</a>
+                <a href="http://mediaworks.caixin.com/" title="创媒工场" target="_blank">创媒工场</a>
+                <a href="http://www.guigu.org/" title="硅谷网" target="_blank">硅谷网</a>
+                <a href="https://mos.meituan.com/" title="美团云" target="_blank">美团云</a>
+                <a href="http://www.managershare.com/" title="经理人分享" target="_blank">经理人分享</a>
+                <a href="http://www.shichangbu.com/" title="市场部网" target="_blank">市场部网</a>
+                <a href="http://www.ikanchai.com/" title="砍柴网" target="_blank">砍柴网</a>
+                <a href="http://www.cocoachina.com/" title="CocoaChina" target="_blank">CocoaChina</a>
+                <a href="http://www.ibeifeng.com/" title="北风网" target="_blank">北风网</a>
+                <a href="http://www.jiankongbao.com/" title="云智慧" target="_blank">云智慧</a>
+                <a href="http://www.wyzc.com/" title="我赢职场" target="_blank">我赢职场</a>
+                <a href="http://www.thebigdata.cn/" title="大数据时代" target="_blank">大数据时代</a>
+                <a href="http://www.qidic.com/" title="奇笛网" target="_blank">奇笛网</a>
+                <a href="http://www.cngulu.com/" title="咕噜网" target="_blank">咕噜网</a>
+                <a href="http://www.linuxdiyf.com/" title="红联linux" target="_blank">红联linux</a>
+                <a href="http://win10.ithome.com/" title="Win10之家" target="_blank">Win10之家</a>
+                <a href="http://cn.cocos2d-x.org/" title="Cocos引擎中文官网" target="_blank">Cocos引擎中文官网</a>
+                <a href="http://www.niaogebiji.com/" title="鸟哥笔记" target="_blank">鸟哥笔记</a>
+                <a href="http://www.play.cn/" title="爱游戏" target="_blank">爱游戏</a>
+                <a href="http://www.investide.cn/" title="投资潮" target="_blank">投资潮</a>
+                <a href="http://www.31huiyi.com/" title="31会议网" target="_blank">31会议网</a>
+            <a href="http://www.tuicool.com/links">更多链接&gt;&gt;</a>&nbsp;&nbsp;
+        </dd>
+    </dl>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div style="display:none;">
+   <script src="./用webmagic实现的网络爬虫 - 推酷_files/stat.php" language="JavaScript"></script><script src="./用webmagic实现的网络爬虫 - 推酷_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=5541078" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./用webmagic实现的网络爬虫 - 推酷_files/pic.gif"></a>
+</div>
+
+
+
+
+<div class="return" title="返回顶部" style="display: block;"></div><iframe frameborder="0" id="bdSharePopup_1427930731753bg" class="bdshare_popup_bg" style="height: 326px; width: 228px; top: 14432px; left: 1021.71875px; display: inline;"></iframe><div class="bdshare_popup_box" id="bdSharePopup_1427930731753box" style="width: 226px; top: 14432px; left: 1021.71875px; display: block;"><div class="bdshare_popup_top">分享到</div><ul class="bdshare_popup_list"><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_mshare" data-cmd="mshare">一键分享</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_qzone" data-cmd="qzone">QQ空间</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_tsina" data-cmd="tsina">新浪微博</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_bdysc" data-cmd="bdysc">百度云收藏</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_weixin" data-cmd="weixin">微信</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_renren" data-cmd="renren">人人网</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_tqq" data-cmd="tqq">腾讯微博</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_bdxc" data-cmd="bdxc">百度相册</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_kaixin001" data-cmd="kaixin001">开心网</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_tqf" data-cmd="tqf">腾讯朋友</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_tieba" data-cmd="tieba">百度贴吧</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_douban" data-cmd="douban">豆瓣网</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_tsohu" data-cmd="tsohu">搜狐微博</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_bdhome" data-cmd="bdhome">百度新首页</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_sqq" data-cmd="sqq">QQ好友</a></li><li><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_thx" data-cmd="thx">和讯微博</a></li></ul><div class="bdshare_popup_bottom"><a href="http://www.tuicool.com/articles/bERZfe#" onclick="return false;" class="popup_more" data-cmd="more" target="_blank;">更多...</a></div></div></body></html>
